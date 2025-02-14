@@ -19,6 +19,20 @@ app.use('/krishi/user', userRoutes)
 app.use('/krishi/marketplace', isAuthenticated, marketRoutes)
 app.use('/krishi/forum', isAuthenticated, forumRoutes)
 
+app.get("/krishi/weather", async (req, res) => {
+    try {
+      const { city } = req.query; // Example: frontend sends ?city=London
+      if (!city) return res.status(400).json({ error: "City is required" });
+  
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+      const response = await axios.get(url);
+  
+      res.json(response.data);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch weather" });
+    }
+  });
+
 const corsOptions = {
     origin: 'http://localhost:5173',
     credentails: true
