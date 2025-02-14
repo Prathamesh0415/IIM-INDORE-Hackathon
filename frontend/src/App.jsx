@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <div className='text-green-400 font-bold'>
-          HELLO WORLD
+          HELLO
       </div>
     </>
   )
