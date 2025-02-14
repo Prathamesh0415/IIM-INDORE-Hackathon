@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #chatbox { width: 50%; margin: auto; padding: 10px; border: 1px solid #ccc; }
+        #message { width: 80%; padding: 10px; }
+        button { padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>AI Chatbot</h2>
+    <div id="chatbox">
+        <p><b>Bot:</b> Hello! Ask me anything.</p>
+    </div>
+    <input type="text" id="message" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            let message = document.getElementById("message").value;
+            if (!message) return;
+
+            // Show user message
+            document.getElementById("chatbox").innerHTML += `<p><b>You:</b> ${message}</p>`;
+            document.getElementById("message").value = "";
+
+            // Send request to FastAPI backend
+            let response = await fetch("http://127.0.0.1:8000/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: message })
+            });
+
+            let data = await response.json();
+            document.getElementById("chatbox").innerHTML += `<p><b>Bot:</b> ${data.reply}</p>`;
+        }
+    </script>
+</body>
+</html>

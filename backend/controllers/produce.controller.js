@@ -24,3 +24,15 @@ export const addProduce = async (req, res) => {
         res.status(400).send({message: "Internal server error"})
     }
 }
+
+export const deleteProduct = async (req, res) => {
+    try{
+        const productId = req.params.id
+        if(!productId) return res.status(404).send("Error not found")
+        const produce = await Produce.findByIdAndDelete(productId)
+        if(!produce) res.status(404).send({message: "No produce found"})
+        return res.status(200).send
+        }catch(error){
+        console.log("error in product controller", error``)
+    }
+}

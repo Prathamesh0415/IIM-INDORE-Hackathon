@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -7,11 +8,15 @@ const Sidebar = () => {
         <img src='frontend\src\assets\logo.png' className="h-[100px] w-[100px]"></img>
       </div>
       <ul className="space-y-4 text-center">
-        {["HOME", "DASHBOARD", "DETECT IT", "AGRIWEATHER", "MandiConnect", "VoiceMitra", "Forum", "REGISTER/LOGIN", "CONTACT US"].map((item, index) => (
-          <li key={index} className="hover:bg-green-700 py-2 rounded">
-            <a href="#" className="block">{item}</a>
-          </li>
-        ))}
+        {["Home", "Dashboard", "Detect It", "Agriweather", "MandiConnect", "VoiceMitra", "Forum", "REGISTER/LOGIN", "CONTACT US"].map((item, index) => {
+          return <div>
+          <Link to={`/${item}`}>
+            <li key={index} className="hover:bg-green-700 py-2 rounded">
+              <a href="#" className="block">{item}</a>
+            </li>
+          </Link>
+          </div>
+        })}
       </ul>
     </nav>
   );

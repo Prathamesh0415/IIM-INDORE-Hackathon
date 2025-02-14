@@ -24,3 +24,19 @@ export const createPost = async (req, res) => {
         res.status(400).send("internal server error")
     }
 }
+
+export const deletePost = async (req, res) => {
+    try{
+        const postId = req.params.id
+        if(!postId) return res.status(400).send({message: error.details[0].message})
+        const post = await Post.findByIdAndDelete(postId)
+        if(!post) return res.status(404).send({message: "post not found"})
+        return res.status(200).send({
+    post,
+    message: "Post deleted successfully",
+    success: true
+    })
+    }catch(error){
+        console.log("error in forum controller", error)
+    }
+}
