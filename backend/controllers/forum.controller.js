@@ -1,5 +1,31 @@
 import { Post, validatePost } from "../models/post.model.js";
 
+export const getAllPost = async (req, res) => {
+    const posts = await Post.find({})
+    res.status(200).send(posts)
+}
+
+export const getPost = async (req, res) => {
+    const { id } = req.params
+    const post = await Post.findById(id)
+    if(post){
+        res.status(200).send(post)
+    }
+    else{
+        res.status(404).send({message: "post not available"})
+    }
+}
+
+export const updatePost = async (req, res) => {
+    const { error } = validatePost(req.body)
+    if(error){
+        res.status(400).send({message: error.details[0].message}) 
+    }
+    const { id } = req.params
+    await Post.findByIdAndUpdate(id, req.body)
+    res.status(200).send({message: "Post updated successfully", success: true})
+}
+
 export const createPost = async (req, res) => {
     try{
         const { error } = validatePost(req.body)
@@ -24,6 +50,7 @@ export const createPost = async (req, res) => {
         res.status(400).send("internal server error")
     }
 }
+
 
 export const deletePost = async (req, res) => {
     try{

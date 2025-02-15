@@ -7,7 +7,7 @@ import userRoutes from './routes/user.routes.js'
 import marketRoutes from './routes/market.routes.js'
 import forumRoutes from './routes/forum.routes.js'
 import isAuthenticated from './middlewares/isAuthenticated.js'
-
+import uploadRoutes from './routes/uploadRoutes.js'
 
 const app = express()
 
@@ -15,9 +15,12 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 
+app.use(cors())
+
 app.use('/krishi/user', userRoutes)
 app.use('/krishi/marketplace', isAuthenticated, marketRoutes)
-app.use('/krishi/forum', isAuthenticated, forumRoutes)
+app.use('/krishi/forum'/*, isAuthenticated*/, forumRoutes)
+app.use('/krishi/disease', uploadRoutes)
 
 app.get("/krishi/weather", async (req, res) => {
     try {

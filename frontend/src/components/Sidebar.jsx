@@ -8,7 +8,7 @@ const Sidebar = () => {
         <img src='frontend\src\assets\logo.png' className="h-[100px] w-[100px]"></img>
       </div>
       <ul className="space-y-4 text-center">
-        {["Home", "Dashboard", "Detect It", "Agriweather", "MandiConnect", "VoiceMitra", "Forum", "REGISTER/LOGIN", "CONTACT US"].map((item, index) => {
+        {["Home", "Dashboard", "DetectIt", "Agriweather", "MandiConnect", "VoiceMitra", "Forum", "Register", "Login", "CONTACT US"].map((item, index) => {
           return <div>
           <Link to={`/${item}`}>
             <li key={index} className="hover:bg-green-700 py-2 rounded">
