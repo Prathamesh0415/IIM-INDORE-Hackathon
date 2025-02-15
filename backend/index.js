@@ -15,7 +15,14 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 
-app.use(cors())
+const allowedOrigins = ["http://localhost:5173"]
+
+app.use(cors({
+  origin: allowedOrigins, // Allow only specific frontend origins
+  credentials: true, // Allow credentials (cookies, authorization headers)
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}))
 
 app.use('/krishi/user', userRoutes)
 app.use('/krishi/marketplace', isAuthenticated, marketRoutes)

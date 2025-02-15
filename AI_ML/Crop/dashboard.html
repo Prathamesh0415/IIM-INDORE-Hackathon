@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo"></div>
+            <ul>
+                <li><a href="krishi.html">HOME</a></li>
+                <li><a href="dashboard.html" class="active">DASHBOARD</a></li>
+                <li><a href="detect.html">DETECT IT</a></li>
+                <li><a href="agriweather.html">AGRIWEATHER</a></li>
+                <li><a href="#">MandiConnect</a></li>
+                <li><a href="#">VoiceMitra</a></li>
+                <li><a href="#">KrishiFinance</a></li>
+                <li><a href="#">REGISTER/LOGIN</a></li>
+                <li><a href="#">CONTACT US</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Dashboard Content -->
+        <main class="main-content">
+            <div class="left-section">
+                <!-- Farmer Profile Section -->
+                <section class="profile-section">
+                    <h2>Farmer Profile</h2>
+                    <div class="profile-card">
+                        <img src="farmer.jpg" alt="Farmer">
+                        <div class="profile-info">
+                            <h3>Ramesh Kumar</h3>
+                            <p><strong>Location:</strong> Uttar Pradesh, India</p>
+                            <p><strong>Crops Grown:</strong> Wheat, Rice, Sugarcane</p>
+                            <p><strong>Experience:</strong> 10+ years</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Government Schemes Section -->
+                <section class="schemes-section">
+                    <h2>Government Schemes</h2>
+                    <div class="scheme-card">
+                        <h3>PM-Kisan Yojana</h3>
+                        <p>Provides ₹6,000 per year as financial support to farmers.</p>
+                    </div>
+                    <div class="scheme-card">
+                        <h3>Fasal Bima Yojana</h3>
+                        <p>Insurance scheme for crop damage due to natural disasters.</p>
+                    </div>
+                    <div class="scheme-card">
+                        <h3>Soil Health Card</h3>
+                        <p>Helps farmers monitor soil nutrients and optimize fertilizer use.</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Crop Detection Section (Right Side) -->
+            <div class="right-section">
+                <section class="crop-detection">
+                    <h2>Soil Analysis & Crop Detection</h2>
+                    <div class="upload-section">
+                        <label for="pdf-upload" class="upload-label">
+                            <img src="upload.png" alt="Upload Icon">
+                            <p>Upload Soil Report (PDF)</p>
+                        </label>
+                        <input type="file" id="pdf-upload" accept="application/pdf" onchange="processPDF(event)">
+                    </div>
+
+                    <div class="result-section">
+                        <h3>Extracted Data</h3>
+                        <p><strong>N:</strong> <span id="n-value">-</span></p>
+                        <p><strong>P:</strong> <span id="p-value">-</span></p>
+                        <p><strong>K:</strong> <span id="k-value">-</span></p>
+                        <p><strong>pH:</strong> <span id="ph-value">-</span></p>
+                        <p><strong>Temperature:</strong> <span id="temp-value">-</span></p>
+                        <p><strong>Humidity:</strong> <span id="humidity-value">-</span></p>
+                        <p><strong>Rainfall:</strong> <span id="rainfall-value">-</span></p>
+                        <button onclick="sendToModel()">Analyze Crop Suitability</button>
+                    </div>
+
+                    <div class="detection-output">
+                        <h3>Predicted Crop:</h3>
+                        <p id="model-output">Awaiting Analysis...</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Follow us on</p>
+                <div class="social-icons">
+                    <a href="#"><img src="instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Krishi. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

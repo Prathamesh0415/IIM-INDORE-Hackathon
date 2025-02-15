@@ -1,4 +1,21 @@
+//import { response } from 'express'
 import { Produce, validateProduce} from '../models/produce.model.js'
+
+export const getAllProduce = async (req, res) => {
+    try{
+        const produce = await Produce.find({})
+        if(!produce){
+            res.status(400).send({message: "error fetching resources", success: false})
+        }
+        res.status(200).send({produce,
+            message: "produce fetched successfully",
+            success: false
+        })
+    }catch(error){
+        console.log("Error in produce controller", error)
+        res.status(400).send({message: "Internal server error"})
+    }
+}
 
 export const addProduce = async (req, res) => {
     try{

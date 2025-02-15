@@ -4,6 +4,7 @@ import SendIcon from "@mui/icons-material/Send";
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import Loading from "/src/components/Forum/loading.jsx";
+import toast from 'react-hot-toast'
 
 export default function Update() {
 
@@ -21,11 +22,13 @@ export default function Update() {
         description
     }
     axios.put(`http://localhost:3000/krishi/forum/updatepost/${id}`, data)
-    .then(() => {
+    .then((res) => {
         navigate('/forum')
+        toast.success(res.data.message)
     })
     .catch(error => {
         console.log(error)
+        toast.error(error.response.data.message)
     })
   }
 

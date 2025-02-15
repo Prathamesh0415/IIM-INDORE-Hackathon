@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-//import toast from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 function Register() {
     const [ input, setInput] = useState({
@@ -34,7 +34,7 @@ function Register() {
             }
         }catch(error){
             console.log(error)
-            //toast.error(error.response.data.message)
+            toast.error(error.response.data.message)
         }
         //console.log(input)
     }
@@ -69,11 +69,11 @@ function Register() {
             />
             <input 
                 className='border border-gray-400 rounded-md px-2 py-1'
-                type='number'
+                type='text'
                 placeholder='aadhar number' 
                 onChange={changeHandler}
                 name='aadharNumber'
-                value={input.password}   
+                value={input.aadharNumber}   
             />
             <button type='submit' className='bg-green-500 p-2 text-white my-2 rounded-md'>Signup</button>
             <p>Already have an account? <Link to={'/login'} className='text-green-600'>Login</Link></p>

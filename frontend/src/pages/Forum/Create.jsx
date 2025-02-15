@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 export default function Create() {
 
@@ -17,11 +18,13 @@ export default function Create() {
         description
     }
     axios.post('http://localhost:3000/krishi/forum/createpost', data)
-    .then(() => {
+    .then((res) => {
         navigate('/forum')
+        toast.success(res.data.message)
     })
     .catch(error => {
         console.log(error)
+        toast.error(error.response.data.message)
     })
   }
   

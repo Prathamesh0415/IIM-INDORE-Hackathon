@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-//import toast from 'react-hot-toast'
+import toast from 'react-hot-toast'
 import axios from 'axios'
 /*import { setAuthUser } from '../redux/appSlice'
 import { useDispatch } from 'react-redux'*/
@@ -33,11 +33,12 @@ const submitHandler = async (e) => {
         if(res.data.success){
             //dispatch(setAuthUser(res.data.user))
             navigate("/home");
-            //toast.success(res.data.message)
+            toast.success(res.data.message)
         }
     }catch(error){
         console.log(error)
         toast.error(error.response.data.message)
+        
     }
     //console.log(input)
 }

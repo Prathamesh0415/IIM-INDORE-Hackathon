@@ -1,9 +1,9 @@
 import React from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import About from "./components/About";
-import Forum from "./components/Forum";
-import Testimonials from "./components/Testimonials";
+//import About from "./components/About";
+//import Forum from "./components/Forum";
+//import Testimonials from "./components/Testimonials";
 import Chatbot from "./pages/Chatbot";
 import Footer from "./components/Footer";
 import { Routes, Route } from 'react-router-dom';
@@ -16,8 +16,10 @@ import UpdatePost from "./pages/Forum/Update"
 import Post from "./pages/Forum/Post"
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Dashboard from "./pages/Dashboard";
 
 import Upload from "./pages/Upload";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -26,6 +28,7 @@ const App = () => {
       <main className="ml-64 p-6 flex flex-col gap-6 w-full">
         <Header />
       <Routes>
+       <Route path="/dashboard" element={<Dashboard />} />
         <Route path='/home' element={<Home />} />
         <Route path='/forum' element={<ForumHomePage />} />
         <Route path='/marketplace' element={<MarketplaceHomePage />} />
@@ -40,6 +43,7 @@ const App = () => {
         <Route path='/forum/post/:id' element={<Post />} />
       </Routes>
       <Footer />
+      <Toaster />
       </main>
       
       </div>

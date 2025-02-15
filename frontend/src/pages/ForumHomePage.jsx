@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
 import Add from "../components/Forum/AddIcon";
+import toast from "react-hot-toast";
 
 export default function ForumHomePage() {
   const [postData, setPostData] = useState([]);
@@ -23,12 +24,16 @@ export default function ForumHomePage() {
 
   const handleConfirm = async (id) => {
       await axios.delete(`http://localhost:3000/krishi/forum/deletepost/${id}`)
-      .then(() => {
+      .then((res) => {
         console.log('deleted successfully')
         setIsOpen(false)
+        if(res.data.success){
+          toast.success(res.data.message)
+        }
       })
       .catch(error => {
         console.log(error)
+        toast.error(error.response.data.message)
       })
   };
 

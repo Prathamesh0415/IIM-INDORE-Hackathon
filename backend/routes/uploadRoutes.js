@@ -17,7 +17,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
         formData.append("file", fs.createReadStream(req.file.path));
 
         // Send file to FastAPI model
-        const response = await axios.post("http://127.0.0.1:8000/predict", formData, {
+        const response = await axios.post("http://127.0.0.1:8001/predict", formData, {
             headers: { ...formData.getHeaders() },
         });
 
